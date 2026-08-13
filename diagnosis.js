@@ -171,33 +171,44 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function startDiagnosis() {
-    allMembers = getAllMembers();
-    selected = getSelectedMembers();
+  allMembers = getAllMembers();
+  selected = getSelectedMembers();
 
-    if (
-      selected.length !== 9 ||
-      allMembers.length < 10
-    ) {
-      return;
-    }
+  console.log("選択人数:", selected.length);
+  console.log("選択メンバー:", selected);
+  console.log("全メンバー:", allMembers.length);
 
-    ratings = new Map(
-      allMembers.map(member => [
-        member.name,
-        1000
-      ])
+  if (selected.length !== 9) {
+    alert(
+      `9人選択されていません。\n現在 ${selected.length} 人です。`
     );
-
-    askedPairs = new Set();
-    questionNumber = 0;
-
-    startButton.disabled = true;
-    startButton.textContent = "本選開催中…";
-
-    resultArea.innerHTML = "";
-
-    nextQuestion();
+    return;
   }
+
+  if (allMembers.length < 10) {
+    alert(
+      `診断対象メンバーが ${allMembers.length} 人しか取得できていません。`
+    );
+    return;
+  }
+
+  ratings = new Map(
+    allMembers.map(member => [
+      member.name,
+      1000
+    ])
+  );
+
+  askedPairs = new Set();
+  questionNumber = 0;
+
+  startButton.disabled = true;
+  startButton.textContent = "本選開催中…";
+
+  resultArea.innerHTML = "";
+
+  nextQuestion();
+}
 
   function choosePair() {
     const active = [...allMembers]
