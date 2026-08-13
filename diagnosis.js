@@ -448,22 +448,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  function showResult() {
-    startButton.disabled = false;
-    startButton.textContent =
-      "もう一度診断する";
-
-    progress.textContent =
-      "本選終了！";
-
-    const ranked = [...allMembers]
-      .sort((a, b) => {
-        return (
-          (ratings.get(b.name) || 1000) -
-          (ratings.get(a.name) || 1000)
-        );
-      })
-      .slice(0, 3);
 
 function showResult() {
   startButton.disabled = false;
