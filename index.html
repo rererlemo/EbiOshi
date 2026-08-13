@@ -24,5 +24,55 @@
   </button>
 
   <script src="script.js"></script>
+  
+  <!-- =========================
+     EBiDAN 好き顔診断
+     ========================= -->
+
+<section id="faceDiagnosis" class="face-diagnosis is-hidden">
+
+  <div class="face-diagnosis-inner">
+
+    <p class="face-kicker">
+      EBiDAN 好き顔診断
+    </p>
+
+    <h2>
+      💘 本選開催！
+    </h2>
+
+    <p class="face-intro">
+      選んだ9人をシードにして、<br>
+      ほかのメンバーも途中参戦！<br>
+      「どっちの顔が好き？」を直感で選んでね♡
+    </p>
+
+    <div
+      id="selectedFaceMembers"
+      class="selected-face-members"
+    ></div>
+
+    <button
+      id="startFaceDiagnosis"
+      class="face-start"
+      type="button"
+    >
+      💘 本選をスタート
+    </button>
+
+    <p
+      id="faceProgress"
+      class="face-progress"
+    ></p>
+
+    <div id="faceQuestionArea"></div>
+
+    <div id="faceDiagnosisResult"></div>
+
+  </div>
+
+</section>
+
+<script src="diagnosis.js"></script>
 </body>
 </html>
