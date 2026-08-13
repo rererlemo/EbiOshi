@@ -125,3 +125,234 @@ header p {
   max-width: 1000px !important;
   margin: 0 auto !important;
 }
+
+/* ========================================
+   EBiDAN 好き顔診断
+   ======================================== */
+
+.face-diagnosis {
+  margin: 30px 16px 50px;
+  padding: 32px 16px 45px;
+  background: #fff;
+  border-radius: 24px;
+  text-align: center;
+}
+
+.face-diagnosis.is-hidden {
+  display: none;
+}
+
+.face-diagnosis-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.face-kicker {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: .12em;
+  color: #999;
+  font-weight: bold;
+}
+
+.face-diagnosis h2 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.face-intro {
+  margin: 12px 0 20px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.selected-face-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.selected-face-members span {
+  padding: 5px 10px;
+  background: #f3f3f3;
+  border-radius: 999px;
+  font-size: 11px;
+}
+
+.face-start {
+  padding: 13px 25px;
+  border: none;
+  border-radius: 999px;
+  background: #222;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.face-start:disabled {
+  opacity: .5;
+}
+
+.face-progress {
+  min-height: 20px;
+  margin: 18px 0 8px;
+  color: #999;
+  font-size: 12px;
+}
+
+.face-question {
+  margin: 10px 0 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.face-vs {
+  display: grid;
+  grid-template-columns: 1fr 42px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.face-choice {
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: 18px;
+  background: #f5f5f5;
+  cursor: pointer;
+  transition: .15s;
+}
+
+.face-choice:hover {
+  transform: translateY(-3px);
+}
+
+.face-choice.is-selected {
+  outline: 4px solid #222;
+}
+
+.face-choice img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.face-choice span {
+  display: block;
+  padding: 10px 4px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.vs-badge {
+  font-size: 12px;
+  font-weight: 900;
+  color: #aaa;
+}
+
+.face-result-box {
+  margin-top: 28px;
+  padding: 22px 12px;
+  border-radius: 20px;
+  background: #f7f7f7;
+}
+
+.face-result-box h3 {
+  margin: 0 0 16px;
+  font-size: 20px;
+}
+
+.face-top3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.face-rank {
+  overflow: hidden;
+  border-radius: 15px;
+  background: #fff;
+}
+
+.face-rank img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.rank-medal {
+  padding-top: 8px;
+  font-size: 20px;
+}
+
+.face-rank strong {
+  display: block;
+  padding: 4px;
+  font-size: 13px;
+}
+
+.face-rank small {
+  display: block;
+  padding: 0 5px 12px;
+  color: #777;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.face-type-result {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+  text-align: left;
+}
+
+.type-row {
+  display: grid;
+  grid-template-columns: 35px 1fr auto;
+  gap: 8px;
+  padding: 11px 0;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 12px;
+}
+
+.type-row strong {
+  font-size: 13px;
+}
+
+.type-row em {
+  color: #999;
+  font-style: normal;
+}
+
+.face-result-note {
+  margin-top: 14px;
+  color: #777;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .face-diagnosis {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .face-vs {
+    grid-template-columns: 1fr 28px 1fr;
+    gap: 5px;
+  }
+
+  .face-choice span {
+    font-size: 11px;
+  }
+
+  .face-diagnosis h2 {
+    font-size: 23px;
+  }
+}
