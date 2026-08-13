@@ -465,54 +465,147 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .slice(0, 3);
 
-    const typeScores = {};
+function showResult() {
+  startButton.disabled = false;
+  startButton.textContent = "もう一度診断する";
 
-    ranked.forEach((member, index) => {
-      const type =
-        ebti[normalize(member.name)];
+  progress.textContent = "本選終了！";
 
-      if (!type) return;
+  const ranked = [...allMembers]
+    .sort((a, b) => {
+      return (
+        (ratings.get(b.name) || 1000) -
+        (ratings.get(a.name) || 1000)
+      );
+    })
+    .slice(0, 3);
 
-      const point = [
-        3,
-        2,
-        1
-      ][index];
+  // =========================
+  // 1位のメンバー
+  // =========================
 
-      typeScores[type] =
-        (typeScores[type] || 0) +
-        point;
-    });
+  const firstPlace = ranked[0];
 
-    const topTypes =
-      Object.entries(typeScores)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 3);
+  const firstPlaceType =
+    ebti[normalize(firstPlace.name)];
 
-    const medals = [
-      "🥇",
-      "🥈",
-      "🥉"
-    ];
+  // =========================
+  // 1位と同じEBTiのメンバーを取得
+  // プルダウン順＝allMembersの順番を維持
+  // =========================
 
-    resultArea.innerHTML = `
-      <div class="face-result-box">
+  const sameTypeMembers = allMembers.filter(member => {
+    return (
+      ebti[normalize(member.name)] === firstPlaceType
+    );
+  });
 
-        <h3>
-          💘 あなたの好き顔TOP3
-        </h3>
+  // 1位を必ず一番左にする
+  const orderedSameTypeMembers = [
+    firstPlace,
+    ...sameTypeMembers.filter(member => {
+      return member.name !== firstPlace.name;
+    })
+  ];
 
-        <div class="face-top3">
+  const medals = [
+    "🥇",
+    "🥈",
+    "🥉"
+  ];
 
-          ${ranked
-            .map((member, index) => `
-              <div
-                class="face-rank rank-${index + 1}"
+  resultArea.innerHTML = `
+    <div class="face-result-box">
+
+      <!-- =========================
+           TOP3
+           ========================= -->
+
+      <h3>
+        💘 あなたの好き顔TOP3
+      </h3>
+
+      <div class="face-top3">
+
+        ${ranked
+          .map((member, index) => `
+            <div
+              class="face-rank rank-${index + 1}"
+            >
+
+              <div class="rank-medal">
+                ${medals[index]}
+              </div>
+
+              <img
+                src="${member.image}"
+                alt="${member.name}"
               >
 
-                <div class="rank-medal">
-                  ${medals[index]}
-                </div>
+              <strong>
+                ${member.name}
+              </strong>
+
+              <small>
+                ${
+                  ebti[
+                    normalize(member.name)
+                  ] || ""
+                }
+              </small>
+
+            </div>
+          `)
+          .join("")}
+
+      </div>
+
+
+      <!-- =========================
+           1位のEBTi
+           ========================= -->
+
+      <div class="same-type-result">
+
+        <p class="same-type-kicker">
+          🥇 あなたの好き顔No.1
+        </p>
+
+        <h3 class="same-type-title">
+          ${firstPlaceType}
+        </h3>
+
+        <p class="same-type-description">
+          ${firstPlace.name}と同じEBTiのメンバー
+        </p>
+
+
+        <!-- 横一列 -->
+
+        <div class="same-type-scroll">
+
+          ${orderedSameTypeMembers
+            .map((member, index) => `
+              <div
+                class="
+                  same-type-card
+                  ${
+                    index === 0
+                      ? "is-first"
+                      : ""
+                  }
+                "
+              >
+
+                ${
+                  index === 0
+                    ? `
+                      <div class="same-type-badge">
+                        🥇 No.1
+                      </div>
+                    `
+                    : ""
+                }
 
                 <img
                   src="${member.image}"
@@ -523,71 +616,33 @@ document.addEventListener("DOMContentLoaded", () => {
                   ${member.name}
                 </strong>
 
-                <small>
-                  ${
-                    ebti[
-                      normalize(member.name)
-                    ] || ""
-                  }
-                </small>
-
               </div>
             `)
             .join("")}
 
         </div>
 
-        <div class="face-type-result">
-
-          <h3>
-            🧬 あなたの好き顔系統
-          </h3>
-
-          ${
-            topTypes.length
-              ? topTypes
-                  .map(
-                    ([type, score], index) => `
-                      <div class="type-row">
-
-                        <span>
-                          ${index + 1}位
-                        </span>
-
-                        <strong>
-                          ${type}
-                        </strong>
-
-                        <em>
-                          ${score}pt
-                        </em>
-
-                      </div>
-                    `
-                  )
-                  .join("")
-              : `
-                <p>
-                  EBTiデータを集計できませんでした。
-                </p>
-              `
-          }
-
-          <p class="face-result-note">
-            選んだ9人をシードにして、
-            未選択メンバーも途中参戦。
-            顔の2択から好き顔ランキングを算出しました♡
-          </p>
-
-        </div>
-
       </div>
-    `;
 
-    resultArea.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+
+      <!-- =========================
+           説明
+           ========================= -->
+
+      <p class="face-result-note">
+        あなたの好き顔No.1と同じ
+        「${firstPlaceType}」のメンバーを
+        プルダウン順で並べています♡
+      </p>
+
+    </div>
+  `;
+
+  resultArea.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
   }
 
   /*
