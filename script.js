@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
     {
-      name: "⑤ ONE Ｎ' ONLY",
+      name: "⑤ ONE N' ONLY",
       members: [
         {
           name: "#25-TETTA",
@@ -371,6 +371,8 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   ];
 
+  window.ebidanGroups = groups;
+  
   const selectors = document.getElementById("selectors");
   const result = document.getElementById("result");
 
