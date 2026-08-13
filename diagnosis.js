@@ -499,12 +499,12 @@ const sameTypeMembers = getGroups()
   });
 
   // 1位を必ず一番左にする
-  const orderedSameTypeMembers = [
-    firstPlace,
-    ...sameTypeMembers.filter(member => {
-      return member.name !== firstPlace.name;
-    })
-  ];
+const orderedSameTypeMembers = [
+  firstPlace,
+  ...sameTypeMembers.filter(member => {
+    return normalize(member.name) !== normalize(firstPlace.name);
+  })
+];
 
   const medals = [
     "🥇",
