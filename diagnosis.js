@@ -489,7 +489,10 @@ function showResult() {
   // プルダウン順＝allMembersの順番を維持
   // =========================
 
-  const sameTypeMembers = allMembers.filter(member => {
+const sameTypeMembers = getGroups()
+  .slice(0, 9)
+  .flatMap(group => group.members)
+  .filter(member => {
     return (
       ebti[normalize(member.name)] === firstPlaceType
     );
