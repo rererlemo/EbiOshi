@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!diagnosis || !startButton || !questionArea || !resultArea) return;
 
   const ebti = {
-    "#5-Kai": "顔がキレる知性派タイプ",
+    "#5-Kai": "頭がキレる知性派タイプ",
     "#1-Ryoga": "明るさ満点！爆笑ムードメーカータイプ",
     "#3-Takuya": "圧倒的ファッションアイコンタイプ",
     "#2-Yuki": "カリスマパフォーマータイプ",
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "#8-Daichi": "明るさ満点！爆笑ムードメーカータイプ",
     "#30-Shunta": "愛され有能弟タイプ",
     "#35-Jyutaro": "王道キラキラ王子様タイプ",
-    "#9-Jinto": "顔がキレる知性派タイプ",
+    "#9-Jinto": "頭がキレる知性派タイプ",
 
     "#10-Leo": "頼りになるみんなのママタイプ",
     "#22-Tsuyoshi": "圧倒的ファッションアイコンタイプ",
@@ -101,13 +101,13 @@ document.addEventListener("DOMContentLoaded", () => {
       : [];
   }
 
-  function getAllMembers() {
-    return getGroups()
-      .slice(0, 9)
-      .flatMap(group => group.members)
-      .filter(member => {
-        return member.image && ebti[normalize(member.name)];
-      });
+function getAllMembers() {
+  return getGroups()
+    .slice(0, 9)
+    .flatMap(group => group.members)
+    .filter(member => {
+      return member.image && ebti[normalize(member.name)];
+    });
   }
 
   function pairKey(a, b) {
