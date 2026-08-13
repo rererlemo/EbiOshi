@@ -627,8 +627,6 @@ function showResult() {
     block: "start"
   });
 }
-  }
-
   /*
     プルダウン9個を監視
   */
